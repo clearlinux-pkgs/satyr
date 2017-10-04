@@ -1,0 +1,7 @@
+libc.so.6
+libdl.so.2
+libdw.so.1
+libelf.so.1
+librpm.so.3
+librpmio.so.3
+libstdc++.so.6
