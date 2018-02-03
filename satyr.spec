@@ -4,14 +4,13 @@
 #
 Name     : satyr
 Version  : 0.25
-Release  : 6
+Release  : 7
 URL      : https://github.com/abrt/satyr/archive/0.25.tar.gz
 Source0  : https://github.com/abrt/satyr/archive/0.25.tar.gz
 Summary  : Automatic problem management with anonymous reports
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: satyr-bin
-Requires: satyr-legacypython
 Requires: satyr-python3
 Requires: satyr-lib
 Requires: satyr-doc
@@ -30,6 +29,7 @@ BuildRequires : pkgconfig(python)
 BuildRequires : pkgconfig(python3)
 BuildRequires : pkgconfig(rpm)
 BuildRequires : popt-dev
+BuildRequires : python3-dev
 Patch1: 0001-Use-standard-autoconf-python-check.patch
 
 %description
@@ -69,15 +69,6 @@ Group: Documentation
 doc components for the satyr package.
 
 
-%package legacypython
-Summary: legacypython components for the satyr package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the satyr package.
-
-
 %package lib
 Summary: lib components for the satyr package.
 Group: Libraries
@@ -89,7 +80,6 @@ lib components for the satyr package.
 %package python
 Summary: python components for the satyr package.
 Group: Default
-Requires: satyr-legacypython
 Requires: satyr-python3
 
 %description python
@@ -114,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516556736
+export SOURCE_DATE_EPOCH=1517683460
 %autogen --disable-static
 make  %{?_smp_mflags}
 
@@ -126,7 +116,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1516556736
+export SOURCE_DATE_EPOCH=1517683460
 rm -rf %{buildroot}
 %make_install
 
@@ -182,10 +172,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc /usr/share/man/man1/*
 %doc /usr/share/man/man3/*
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files lib
 %defattr(-,root,root,-)
