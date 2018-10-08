@@ -1,4 +1,4 @@
-0.26
-popt-dev
-elfutils-dev
+0.27
 doxygen
+elfutils-dev
+popt-dev
