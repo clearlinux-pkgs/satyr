@@ -4,7 +4,7 @@
 #
 Name     : satyr
 Version  : 0.27
-Release  : 19
+Release  : 21
 URL      : https://github.com/abrt/satyr/archive/0.27.tar.gz
 Source0  : https://github.com/abrt/satyr/archive/0.27.tar.gz
 Summary  : Automatic problem management with anonymous reports
@@ -19,10 +19,10 @@ Requires: satyr-python3 = %{version}-%{release}
 BuildRequires : Sphinx
 BuildRequires : doxygen
 BuildRequires : elfutils-dev
-BuildRequires : pkgconfig(python)
 BuildRequires : pkgconfig(python3)
 BuildRequires : pkgconfig(rpm)
 BuildRequires : popt-dev
+BuildRequires : python3-dev
 
 %description
 Failures of computer programs are omnipresent in the information technology
@@ -38,7 +38,6 @@ as procedures, objects, exceptions.
 Summary: bin components for the satyr package.
 Group: Binaries
 Requires: satyr-license = %{version}-%{release}
-Requires: satyr-man = %{version}-%{release}
 
 %description bin
 bin components for the satyr package.
@@ -50,6 +49,7 @@ Group: Development
 Requires: satyr-lib = %{version}-%{release}
 Requires: satyr-bin = %{version}-%{release}
 Provides: satyr-devel = %{version}-%{release}
+Requires: satyr = %{version}-%{release}
 
 %description dev
 dev components for the satyr package.
@@ -105,23 +105,28 @@ python3 components for the satyr package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1539007409
-%autogen --disable-static
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573756123
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+%autogen --disable-static --without-python2
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1539007409
+export SOURCE_DATE_EPOCH=1573756123
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/satyr
-cp COPYING %{buildroot}/usr/share/package-licenses/satyr/COPYING
+cp %{_builddir}/satyr-0.27/COPYING %{buildroot}/usr/share/package-licenses/satyr/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 %make_install
 
 %files
@@ -171,7 +176,6 @@ cp COPYING %{buildroot}/usr/share/package-licenses/satyr/COPYING
 /usr/include/satyr/utils.h
 /usr/lib64/libsatyr.so
 /usr/lib64/pkgconfig/satyr.pc
-/usr/share/man/man3/satyr-python.3
 
 %files lib
 %defattr(-,root,root,-)
@@ -180,7 +184,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/satyr/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/satyr/COPYING
+/usr/share/package-licenses/satyr/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 
 %files man
 %defattr(0644,root,root,0755)
