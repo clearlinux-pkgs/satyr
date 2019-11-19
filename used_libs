@@ -3,6 +3,6 @@ libc.so.6
 libdl.so.2
 libdw.so.1
 libelf.so.1
-librpm.so.3
-librpmio.so.3
+librpm.so.8
+librpmio.so.8
 libstdc++.so.6
