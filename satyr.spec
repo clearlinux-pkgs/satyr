@@ -4,7 +4,7 @@
 #
 Name     : satyr
 Version  : 0.27
-Release  : 26
+Release  : 27
 URL      : https://github.com/abrt/satyr/archive/0.27.tar.gz
 Source0  : https://github.com/abrt/satyr/archive/0.27.tar.gz
 Summary  : Automatic problem management with anonymous reports
