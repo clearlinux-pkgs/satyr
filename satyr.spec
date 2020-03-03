@@ -4,7 +4,7 @@
 #
 Name     : satyr
 Version  : 0.27
-Release  : 31
+Release  : 32
 URL      : https://github.com/abrt/satyr/archive/0.27.tar.gz
 Source0  : https://github.com/abrt/satyr/archive/0.27.tar.gz
 Summary  : Automatic problem management with anonymous reports
@@ -49,6 +49,7 @@ Group: Development
 Requires: satyr-lib = %{version}-%{release}
 Requires: satyr-bin = %{version}-%{release}
 Provides: satyr-devel = %{version}-%{release}
+Requires: satyr = %{version}-%{release}
 Requires: satyr = %{version}-%{release}
 
 %description dev
@@ -107,7 +108,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574199332
+export SOURCE_DATE_EPOCH=1583222973
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -124,7 +126,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1574199332
+export SOURCE_DATE_EPOCH=1583222973
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/satyr
 cp %{_builddir}/satyr-0.27/COPYING %{buildroot}/usr/share/package-licenses/satyr/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
