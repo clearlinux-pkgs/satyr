@@ -1,5 +1,4 @@
-0.27
+0.31
 doxygen
-elfutils-dev
+gperf
 popt-dev
-python3-dev

@@ -1,3 +1,21 @@
+satyr 0.31
+==========
+Remove #define PyString_AsString PyUnicode_AsUTF8
+python: Adapt to changes made in PEP 590
+
+satyr 0.30
+==========
+Fix registers being parsed as modules in kernel oopses in some cases
+Use Nettle for cryptographic calculations
+Fix builds with GCC 10
+
+satyr 0.28
+==========
+Clean up build files, remove ability to build without an unwinder
+Remove Python 2 support
+Remove more non-crash function frames
+Fix JSON parser crash with invalid input
+
 satyr 0.27
 ==========
 Improved format of truncated backtrace for Python and core problems.
